@@ -1,4 +1,4 @@
-import "../styles/PetCard.css";
+import "./PetCard.css";
 import { Link } from "react-router-dom";
 const PetCard = ({ pet }) => {
   return (

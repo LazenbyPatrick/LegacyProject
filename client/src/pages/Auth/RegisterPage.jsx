@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { register } from "../services/authService";
-import "../styles/RegisterPage.css";
+import { register } from "../../services/authService";
+import "./RegisterPage.css";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({

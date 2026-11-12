@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import AdminPetList from "./AdminPetList";
 import AdminMessages from "./AdminMessages";
-import "../styles/AdminDashboard.css";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   return (

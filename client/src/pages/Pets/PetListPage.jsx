@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PetCard from "../components/PetCard";
-import MapComponent from "../components/MapComponent";
-import "../styles/PetListPage.css";
+import PetCard from "../../components/PetCard/PetCard";
+import MapComponent from "../../components/MapComponent/MapComponent";
+import "./PetListPage.css";
 
 const PetListPage = () => {
   const [pets, setPets] = useState([]);

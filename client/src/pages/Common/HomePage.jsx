@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/HomePage.css";
+import "./HomePage.css";
 import { TbMessageFilled } from "react-icons/tb";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { MdOutlinePets } from "react-icons/md";

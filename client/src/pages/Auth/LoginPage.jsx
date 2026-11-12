@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/LoginPage.css";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });

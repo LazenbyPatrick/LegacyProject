@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/AdminEditPage.css";
+import "./AdminEditPage.css";
 
 const AdminEditPage = () => {
   const { id } = useParams(); // Ensure `id` is obtained correctly

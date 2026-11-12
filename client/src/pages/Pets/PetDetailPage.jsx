@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/PetDetailPage.css";
+import "./PetDetailPage.css";
 import { FaPhone, FaEdit, FaHeart } from "react-icons/fa";
 import { BiSolidHomeHeart } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";

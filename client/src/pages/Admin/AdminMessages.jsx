@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/AdminMessages.css";
+import "./AdminMessages.css";
 
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);
