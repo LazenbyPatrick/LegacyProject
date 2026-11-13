@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PetCard from "../../components/PetCard/PetCard";
+import PetCard from "../../components/PetCard/PetCard.js";
 import "./AdminPetList.css";
 
+interface Pet {
+  image?: string;
+  name: string;
+  _id: string;
+}
+
+
 const AdminPetList = () => {
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState<Pet[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newPet, setNewPet] = useState({
     name: "",
@@ -18,7 +25,7 @@ const AdminPetList = () => {
     location: "", // This will hold the city name initially
     image: "",
   });
-  const [imageFile, setImageFile] = useState(null); // State for the image file
+  const [imageFile, setImageFile] = useState<File | null>(null); // State for the image file
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("role");
 
@@ -43,16 +50,16 @@ const AdminPetList = () => {
     setShowAddForm(true);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setNewPet({ ...newPet, [name]: value });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     setImageFile(e.target.files[0]);
   };
 
-  const geocodeCity = async (cityName) => {
+  const geocodeCity = async (cityName: any) => {
     try {
       const response = await axios.get(
         "https://nominatim.openstreetmap.org/search",
@@ -76,22 +83,24 @@ const AdminPetList = () => {
     }
   };
 
-  const handleAddPetSubmit = async (e) => {
+  const handleAddPetSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
       const formData = new FormData();
-      formData.append("file", imageFile);
+      if (imageFile !== null) {
+        formData.append("file", imageFile);
+      }
+
       formData.append("upload_preset", "petAdopt");
 
       const cloudinaryRes = await axios.post(
-        process.env.CLOUDINARY_URL,
+         process.env.CLOUDINARY_URL || "",
         formData
       );
 
       const imageUrl = cloudinaryRes.data.secure_url;
 
-      // Geocode the city to get latitude and longitude
       const { lat, lng } = await geocodeCity(newPet.location);
       const newPetData = { ...newPet, location: { lat, lng }, image: imageUrl };
 

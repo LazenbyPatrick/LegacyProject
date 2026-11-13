@@ -1,6 +1,17 @@
 import "./PetCard.css";
 import { Link } from "react-router-dom";
-const PetCard = ({ pet }) => {
+
+interface Pet {
+  image?: string;
+  name: string;
+  _id: string;
+}
+
+interface PetCardProps {
+  pet: Pet;
+}
+
+const PetCard = ({pet}: PetCardProps) => {
   return (
     <div className="pet-card">
       <div className="pet-info">

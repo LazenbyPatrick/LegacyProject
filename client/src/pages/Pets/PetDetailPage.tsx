@@ -7,24 +7,24 @@ import { FaPhone, FaEdit, FaHeart } from "react-icons/fa";
 import { BiSolidHomeHeart } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail, MdDelete } from "react-icons/md";
+import type { Pet } from "../../types/pet";
 
 const PetDetailPage = () => {
   const { id } = useParams();
-  const [pet, setPet] = useState(null);
-  const [cityName, setCityName] = useState(""); // State to store the city name
-  const [isFavorite, setIsFavorite] = useState(false); 
+  const [pet, setPet] = useState<Pet|null>(null);
+  const [cityName, setCityName] = useState<string>(""); // State to store the city name
+  const [isFavorite, setIsFavorite] = useState<boolean>(false); 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("role");
 
-  // Fetch pet details and reverse geocode city name on component mount
   useEffect(() => {
     const fetchPet = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/pets/${id}`);
         setPet(response.data);
 
-        // Check if location coordinates are available
+
         const { lat, lng } = response.data.location;
         if (lat && lng) {
           const geocodeResponse = await axios.get(
@@ -39,19 +39,21 @@ const PetDetailPage = () => {
           );
           setCityName(
             geocodeResponse.data.address.city || "Location not available"
-          ); // Set the city name
+          ); 
         }
 
-        // Fetch user's favorite pets to check if this pet is a favorite
-        const favoritesResponse = await axios.get(
-          `http://localhost:3000/favorite`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        setIsFavorite(
-          favoritesResponse.data.some((favPet) => favPet._id === id)
-        );
+        if (token) {
+            const favoritesResponse = await axios.get(
+            `http://localhost:3000/favorite`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setIsFavorite(
+            favoritesResponse.data.some((favPet: any) => favPet._id === id)
+          );
+        }
+  
       } catch (error) {
         console.error("Error fetching pet details:", error);
       }
@@ -59,7 +61,6 @@ const PetDetailPage = () => {
     fetchPet();
   }, [id, token]);
 
-  // Handler to toggle favorite status
   const handleFavoriteToggle = async () => {
     try {
       const response = await axios.post(
@@ -69,18 +70,16 @@ const PetDetailPage = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setIsFavorite(response.data.pet.favorite); // Update based on response
+      setIsFavorite(response.data.pet.favorite);
     } catch (error) {
       console.error("Error updating favorite status:", error);
     }
   };
 
-  // Loading message while data is being fetched
   if (!pet) return <p>Loading...</p>;
 
-  // Handler for deleting a pet
   const handleDelete = async () => {
-    console.log("Deleting pet with id:", id); // Log the id for debugging
+    console.log("Deleting pet with id:", id);
     try {
       await axios.delete(`http://localhost:3000/dashboard/pets/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -91,7 +90,6 @@ const PetDetailPage = () => {
     }
   };
 
-  // Handler for navigating to the edit page
   const handleEdit = () => {
     navigate(`/pets/${id}/edit`);
   };
@@ -99,7 +97,6 @@ const PetDetailPage = () => {
   return (
     <div className="pet-details">
       <div className="pet-details-info">
-        {/* Admin actions - only shown if logged in as a shelter */}
         {token && userRole === "shelter" && (
           <div className="admin-actions">
             <button onClick={handleEdit} className="edit-button">
@@ -111,13 +108,11 @@ const PetDetailPage = () => {
           </div>
         )}
 
-        {/* Pet details */}
         <h2 id="name">{pet.name}</h2>
         <p>Age: {pet.age}</p>
         <p>Gender: {pet.gender}</p>
 
         <h4>Shelter Details</h4>
-        {/* Display city name from reverse geocoding */}
         <p>
           <FaLocationDot style={{ color: "black", marginRight: "8px" }} />
           {cityName}
@@ -136,7 +131,6 @@ const PetDetailPage = () => {
         </p>
       </div>
 
-      {/* Pet image and contact section */}
       <div className="img-and-contact">
         <img src={pet.image} alt={pet.name} className="pet-details-image" />
 
@@ -158,7 +152,6 @@ const PetDetailPage = () => {
           </div>
         )}
 
-        {/* Favorite button for adopters */}
 
         {token && userRole === "adopter" && (
           <div>

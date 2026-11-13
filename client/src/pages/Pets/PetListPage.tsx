@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import PetCard from "../../components/PetCard/PetCard";
 import MapComponent from "../../components/MapComponent/MapComponent";
 import "./PetListPage.css";
+import type { Pet } from "../../types/pet";
 
 const PetListPage = () => {
-  const [pets, setPets] = useState([]);
-  const [filters, setFilters] = useState({ type: "", location: "" });
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [filters, setFilters] = useState({ 
+    type: "", city: "", age: "" });
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -21,7 +23,7 @@ const PetListPage = () => {
     fetchPets();
   }, []);
 
-  const handleFilterChange = (e) => {
+  const handleFilterChange = (e: any) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { register } from "../../services/authService";
+import { register } from "../../services/authService.jsx";
 import "./RegisterPage.css";
 
 const RegisterPage = () => {
@@ -10,11 +10,11 @@ const RegisterPage = () => {
   });
   const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       await register(formData);

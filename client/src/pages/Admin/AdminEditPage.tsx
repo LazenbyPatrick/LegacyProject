@@ -30,16 +30,16 @@ const AdminEditPage = () => {
     fetchPet();
   }, [id]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setPet({ ...pet, [name]: value });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     setImageFile(e.target.files[0]);
   };
 
-  const handleEditSubmit = async (e) => {
+  const handleEditSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
@@ -52,7 +52,7 @@ const AdminEditPage = () => {
         formData.append("upload_preset", "petAdopt");
 
         const uploadResponse = await axios.post(
-          process.env.CLOUDINARY_URL,
+          process.env.CLOUDINARY_URL || "",
           formData
         );
 

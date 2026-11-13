@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 import PetCard from "../../components/PetCard/PetCard";
 import "./FavsPetPage.css";
 
+interface Pet {
+  image?: string;
+  name: string;
+  _id: string;
+}
+
 const FavoritePetsPage = () => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState<Pet[]>([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {

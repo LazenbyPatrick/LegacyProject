@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from "react-router-dom";
-import AdminPetList from "./AdminPetList";
-import AdminMessages from "./AdminMessages";
+import AdminPetList from "./AdminPetList.jsx";
+import AdminMessages from "./AdminMessages.jsx";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {

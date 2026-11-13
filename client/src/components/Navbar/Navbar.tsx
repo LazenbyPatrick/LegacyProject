@@ -7,7 +7,7 @@ const Navbar = () => {
   const isLoggedIn = !!localStorage.getItem("token");
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove the token on logout
+    localStorage.removeItem("token");
 
     navigate("/login");
   };

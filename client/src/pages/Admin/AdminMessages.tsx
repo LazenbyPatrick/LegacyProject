@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminMessages.css";
 
+interface Msg {
+  _id: string;
+  name: string;
+  email: string;
+  message: string;
+}
+
 const AdminMessages = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Msg[]>([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {

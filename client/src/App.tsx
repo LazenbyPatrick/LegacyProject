@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import RegisterPage from "./pages/Auth/RegisterPage";
-import LoginPage from "./pages/Auth/LoginPage";
-import PetListPage from "./pages/Pets/PetListPage";
-import PetDetailPage from "./pages/Pets/PetDetailPage";
-import HomePage from "./pages/Common/HomePage";
-import ContactPage from "./pages/Common/ContactPage";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import RegisterPage from "./pages/Auth/RegisterPage.jsx";
+import LoginPage from "./pages/Auth/LoginPage.jsx";
+import PetListPage from "./pages/Pets/PetListPage.jsx";
+import PetDetailPage from "./pages/Pets/PetDetailPage.jsx";
+import HomePage from "./pages/Common/HomePage.jsx";
+import ContactPage from "./pages/Common/ContactPage.jsx";
+import AdminDashboard from "./pages/Admin/AdminDashboard.js";
+import Navbar from "./components/Navbar/Navbar.js";
+import Footer from "./components/Footer/Footer.js";
 import "./App.css";
-import AdminEditPage from "./pages/Admin/AdminEditPage";
-import FavoritePetsPage from "./pages/Pets/FavsPetPage";
+import AdminEditPage from "./pages/Admin/AdminEditPage.js";
+import FavoritePetsPage from "./pages/Pets/FavsPetPage.jsx";
 
 function App() {
   return (
