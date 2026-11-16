@@ -64,4 +64,49 @@ cd petAdopt
 
 	
 	
+    
+    
+# 🧪 Backend Improvements - Patrick
+
+For my part of the project, I worked on improving the backend, fixing some issues, and adding tests.
+
+What I changed
+
+* Split server.js into two files, app.js and server.js, to make the code easier to organize and test.
+* Fixed an issue where searching for a pet that didn’t exist returned the wrong status code.
+* Improved how the backend handles errors.
+* Fixed the authentication so invalid tokens return the correct status code.
+* Made sure only shelters can add pets, not adopters.
+
+Testing
+
+I used Jest and Supertest to test the backend.
+
+I created three test files:
+
+* authController.test.js - Tests registration and login.
+* authMiddleware.test.js - Tests valid, invalid, and missing tokens.
+* pets.test.js - Tests getting pets, adding pets, and handling errors.
+
+I tested both when things work correctly and when something goes wrong.
+
+In total, I added 17 tests, and all 17 are passing.
+
+How to run the tests
+
+Go to the server folder:
+
+cd server
+
+⬇️ Install dependencies:
+
+npm install
+
+Run the tests:
+
+npm test
+
+Summary
+
+My main goal was to make the backend work better and be easier to maintain. I also added tests to help catch errors if changes are made to the code later.
 
