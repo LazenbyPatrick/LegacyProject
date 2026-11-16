@@ -12,6 +12,13 @@ exports.getAllPets = async (req, res) => {
 
 // Add a new pet (for shelters)
 exports.addPet = async (req, res) => {
+
+  if (req.user.role !== "shelter") {
+    return res.status(403).json({
+      error: "Only shelters can add pets"
+    });
+  }
+
   try {
     const newPet = new Pet({
       ...req.body,
