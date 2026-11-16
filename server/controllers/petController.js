@@ -28,6 +28,11 @@ exports.addPet = async (req, res) => {
 exports.getOnePet = async (req, res) => {
   try {
     const pet = await Pet.findById(req.params.id);
+
+    if (!pet) {
+      return res.status(404).json({ error: "Pet not found" });
+    }
+
     res.json(pet);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch pet details" });
