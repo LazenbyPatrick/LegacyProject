@@ -24,7 +24,10 @@ const MapComponent = ({ pets }: MapComponentProps) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {pets.map((pet) => (
+      {pets.map((pet) => {
+        if (!pet.location) return null;
+
+        return (
         <Marker
           key={pet._id}
           position={[
@@ -39,7 +42,9 @@ const MapComponent = ({ pets }: MapComponentProps) => {
             <Link to={`/pets/${pet._id}`}>View Details</Link>
           </Popup>
         </Marker>
-      ))}
+        )  
+    })}
+
     </MapContainer>
   );
 };
