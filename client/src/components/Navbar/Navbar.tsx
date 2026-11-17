@@ -14,7 +14,9 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h3>PetAdopt</h3>
+      <Link to="/">
+        <h3>PetAdopt</h3>
+      </Link>
       <div className="nav-links">
         {isLoggedIn ? (
           <button onClick={handleLogout}>Logout</button>
