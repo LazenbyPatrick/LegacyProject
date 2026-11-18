@@ -19,4 +19,3 @@ test('should update email and password inputs on change', () => {
   expect(emailInput).toHaveValue('test@gmail.com');
   expect(passwordInput).toHaveValue('password');
 })
-

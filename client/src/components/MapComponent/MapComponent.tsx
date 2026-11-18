@@ -6,6 +6,7 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import type { Pet } from "../../types/pet";
+import './MapComponent.css';
 
 interface MapComponentProps {
   pets: Pet[];
@@ -18,7 +19,7 @@ const MapComponent = ({ pets }: MapComponentProps) => {
     <MapContainer
       center={[51.505, -0.09]}
       zoom={13}
-      style={{ height: "300px", width: "100%", marginTop: "20px" }}
+      className="map-container"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

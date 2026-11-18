@@ -37,3 +37,24 @@ header h1 {
   width: 100%;
   border-bottom: 20px solid #a6e4e7;
 }
+
+@media (max-width: 768px) {
+  .homepage {
+    font-size: 1.4rem;
+  }
+  .features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .feature {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 40px;
+  }
+  .feature button {
+    font-size: 1.2rem;
+  }
+}
